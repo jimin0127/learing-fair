@@ -2,6 +2,9 @@ from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QWidget, QLabel, QPushButton, QVBoxLayout
 from PySide6.QtCore import Qt
 
+from util.get_resource_path import get_resource_path
+
+
 class OrderCompleteUI(QWidget):
     def __init__(self, on_go_home):
         super().__init__()
@@ -10,7 +13,7 @@ class OrderCompleteUI(QWidget):
         layout.setAlignment(Qt.AlignCenter)
 
         logo_label = QLabel()
-        logo_pixmap = QPixmap("assets/logo.png").scaled(80, 80, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        logo_pixmap = QPixmap(get_resource_path("assets/logo.png")).scaled(80, 80, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         logo_label.setPixmap(logo_pixmap)
         logo_label.setAlignment(Qt.AlignCenter)
 

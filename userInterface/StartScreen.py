@@ -2,6 +2,8 @@ from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QWidget, QLabel, QPushButton, QVBoxLayout, QSpacerItem, QSizePolicy
 from PySide6.QtCore import Qt
 
+from util.get_resource_path import get_resource_path
+
 
 class StartScreen(QWidget):
     def __init__(self, on_start_clicked):
@@ -14,7 +16,7 @@ class StartScreen(QWidget):
         layout.setAlignment(Qt.AlignCenter)
 
         logo_label = QLabel()
-        pixmap = QPixmap("assets/logo.png").scaled(120, 120, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        pixmap = QPixmap(get_resource_path("assets/logo.png")).scaled(120, 120, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         logo_label.setPixmap(pixmap)
         logo_label.setAlignment(Qt.AlignCenter)
 

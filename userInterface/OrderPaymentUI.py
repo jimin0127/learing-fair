@@ -7,6 +7,8 @@ from PySide6.QtCore import Qt
 
 from service.ProductService import ProductService
 from util.format_price import format_price
+from util.get_resource_path import get_resource_path
+
 
 class OrderPaymentUI(QWidget):
     def __init__(self, product, discounted_price, count, open_complete_order, on_back):
@@ -65,7 +67,7 @@ class OrderPaymentUI(QWidget):
         order_info_layout.addWidget(order_info_header_label)
 
         image_label = QLabel()
-        pixmap = QPixmap(self.product["image_path"]).scaled(100, 100, Qt.KeepAspectRatio)
+        pixmap = QPixmap(get_resource_path(self.product["image_path"])).scaled(100, 100, Qt.KeepAspectRatio)
         image_label.setPixmap(pixmap)
         image_label.setAlignment(Qt.AlignCenter)
 

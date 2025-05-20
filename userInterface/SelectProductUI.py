@@ -5,6 +5,7 @@ from PySide6.QtCore import Qt
 
 from service.ProductService import ProductService
 from util.format_price import format_price
+from util.get_resource_path import get_resource_path
 
 
 class ProductItem(QWidget):
@@ -19,7 +20,7 @@ class ProductItem(QWidget):
         card_layout = QVBoxLayout()
         card_layout.setAlignment(Qt.AlignCenter)
 
-        pixmap = QPixmap(product["image_path"]).scaled(120, 120, Qt.KeepAspectRatio)
+        pixmap = QPixmap(get_resource_path(product["image_path"])).scaled(120, 120, Qt.KeepAspectRatio)
         image_label = QLabel()
         image_label.setPixmap(pixmap)
         image_label.setAlignment(Qt.AlignCenter)

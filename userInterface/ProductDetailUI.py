@@ -6,6 +6,8 @@ from service.PriceCalculator import calculator_price
 from service.ProductService import ProductService
 from userInterface.OrderSearchDialog import OrderSearchDialog
 from util.format_price import format_price
+from util.get_resource_path import get_resource_path
+
 
 class ProductDetailUI(QWidget):
     def __init__(self, product, open_order_payment, on_back):
@@ -26,7 +28,7 @@ class ProductDetailUI(QWidget):
         top_bar_layout.addStretch()
 
 
-        pixmap = QPixmap(product["image_path"]).scaled(300, 300, Qt.KeepAspectRatio)
+        pixmap = QPixmap(get_resource_path(product["image_path"])).scaled(300, 300, Qt.KeepAspectRatio)
         image_label = QLabel()
         image_label.setPixmap(pixmap)
         image_label.setAlignment(Qt.AlignCenter)
@@ -148,7 +150,7 @@ class ProductDetailUI(QWidget):
 
     def update_view(self, bought_product, selected_condition):
         self.bought_product_header_label.setText("반환할 상품")
-        self.bought_pixmap = QPixmap(bought_product["image_path"]).scaled(100, 100, Qt.KeepAspectRatio)
+        self.bought_pixmap = QPixmap(get_resource_path(bought_product["image_path"])).scaled(100, 100, Qt.KeepAspectRatio)
         self.bought_pixmap_label.setPixmap(self.bought_pixmap)
         self.bought_product_label.setText(bought_product['name'])
         self.condition_label.setText(f"<b>상태</b> {selected_condition}")
