@@ -25,7 +25,7 @@ jobs:
 
       - name: Package with PyInstaller
         run: |
-          pyinstaller --noconsole --onefile main.py `
+          pyinstaller --onefile main.py `
             --add-data "assets;assets" `
             --add-data "ProductData.csv;." `
             --add-data "BoughtProductData.csv;."
