@@ -36,7 +36,7 @@ class ProductItem(QWidget):
 
         action_layout = QHBoxLayout()
         buy_btn = QPushButton("구매하기")
-        buy_btn.setFixedSize(180, 30)
+        buy_btn.setFixedSize(150, 30)
         buy_btn.clicked.connect(lambda: open_product_detail(self.product))
         action_layout.addWidget(buy_btn)
 
