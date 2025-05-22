@@ -9,6 +9,11 @@ class OrderCompleteUI(QWidget):
     def __init__(self, on_go_home):
         super().__init__()
 
+        self.on_go_home = on_go_home
+
+        self.init_ui()
+
+    def init_ui(self):
         layout = QVBoxLayout()
         layout.setAlignment(Qt.AlignCenter)
 
@@ -28,7 +33,7 @@ class OrderCompleteUI(QWidget):
 
         home_button = QPushButton("처음으로 돌아가기")
         home_button.setFixedSize(180, 40)
-        home_button.clicked.connect(on_go_home)
+        home_button.clicked.connect(self.on_go_home)
 
         layout.addWidget(logo_label, alignment=Qt.AlignTop | Qt.AlignHCenter)
         layout.addWidget(thank_you_label)
