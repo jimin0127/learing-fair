@@ -2,6 +2,8 @@ import csv
 import os
 from datetime import datetime
 
+from util.get_resource_path import get_resource_path
+
 MY_PRODUCT_CSV_PATH = 'BoughtProductData.csv'
 
 class MyProductRepository:
@@ -10,7 +12,7 @@ class MyProductRepository:
         self.products = self._load_products()
 
     def _load_products(self) -> list[dict]:
-        with open(self.csv_path, mode='r', encoding='utf-8') as file:
+        with open(get_resource_path(self.csv_path), mode='r', encoding='utf-8') as file:
             reader = csv.DictReader(file)
             return [row for row in reader]
 
