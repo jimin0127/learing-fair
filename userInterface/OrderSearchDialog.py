@@ -4,21 +4,41 @@ from PySide6.QtWidgets import (
 )
 
 from service.ProductService import ProductService
+from util.format_price import format_price
 
+CONDITION_LIST = ["상", "중", "하"]
 
 class OrderSearchDialog(QDialog):
     def __init__(self):
         super().__init__()
+        self.product_service = ProductService()
+
+        self.search_input = None
+        self.selected_product = None
+        self.selected_condition = None
+        self.result_list = None
+
         self.setWindowTitle("주문 내역 검색")
         self.setModal(True)
         self.setFixedSize(400, 400)
-        self.product_service = ProductService()
 
-        self.selected_product = None
-        self.selected_condition = None
+        self.init_ui()
+
+    def init_ui(self):
+        search_layout = self.get_search_layout()
+        self.result_list = self.get_result_layout()
+
+        close_btn = QPushButton("닫기")
+        close_btn.clicked.connect(self.close)
 
         layout = QVBoxLayout()
+        layout.addLayout(search_layout)
+        layout.addWidget(self.result_list)
+        layout.addWidget(close_btn)
 
+        self.setLayout(layout)
+
+    def get_search_layout(self):
         search_layout = QHBoxLayout()
         self.search_input = QLineEdit()
         self.search_input.setPlaceholderText("상품명을 입력하세요")
@@ -28,23 +48,20 @@ class OrderSearchDialog(QDialog):
 
         search_layout.addWidget(self.search_input)
         search_layout.addWidget(search_btn)
-        layout.addLayout(search_layout)
 
-        self.result_list = QListWidget()
-        self.result_list.itemDoubleClicked.connect(self.on_item_double_clicked)
+        return search_layout
 
-        layout.addWidget(self.result_list)
+    def get_result_layout(self):
+        result_list = QListWidget()
+        result_list.itemDoubleClicked.connect(self.on_item_double_clicked)
+
         all_products = self.product_service.find_bought_products_by_name(name="")
 
         for product in all_products:
-            item_text = f"{product['name']} | {product['price']}원 | {product['bought_year']}"
-            self.result_list.addItem(QListWidgetItem(item_text))
+            item_text = f"{product['name']} | {product['bought_year']} | {format_price(product['price'])}"
+            result_list.addItem(QListWidgetItem(item_text))
 
-        close_btn = QPushButton("닫기")
-        close_btn.clicked.connect(self.close)
-        layout.addWidget(close_btn)
-
-        self.setLayout(layout)
+        return result_list
 
     def search_orders(self):
         keyword = self.search_input.text()
@@ -70,7 +87,7 @@ class OrderSearchDialog(QDialog):
                 self,
                 "상품 상태 선택",
                 "이 상품의 상태를 선택하세요:",
-                ["상", "중", "하"],
+                CONDITION_LIST,
                 0,
                 False
             )
