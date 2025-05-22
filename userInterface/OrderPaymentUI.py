@@ -96,7 +96,7 @@ class OrderPaymentUI(QWidget):
         summary_layout.addStretch()
 
         summary_layout.addWidget(QLabel(f"할인 전 금액 {format_price(int(product['price']) * count)}"))
-        summary_layout.addWidget(QLabel(f"할인율 {round(discounted_price/int(product['price']) * 100)}%"))
+        summary_layout.addWidget(QLabel(f"할인율 {self.calculate_discount_rate(int(product['price']), discounted_price)}%"))
         summary_layout.addWidget(QLabel(f"할인 후 금액 {format_price(discounted_price* count)}"))
         summary_layout.addSpacing(20)
         total_price = QLabel(f"최종 금액 {format_price(discounted_price * count)}")
@@ -135,3 +135,8 @@ class OrderPaymentUI(QWidget):
 
     def show_warning(self, message: str):
         QMessageBox.warning(self, "입력 오류", message)
+
+    def calculate_discount_rate(self, original_price, discounted_price):
+        discount_amount = original_price - discounted_price
+        discount_rate = (discount_amount / original_price) * 100
+        return round(discount_rate, 1)
