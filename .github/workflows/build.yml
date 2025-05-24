@@ -1,4 +1,4 @@
-name: Build GUI App for Windows and macOS
+name: Build Windows EXE
 
 on:
   push:
@@ -6,60 +6,32 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-windows:
+  build:
     runs-on: windows-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: 3.10
 
       - name: Install dependencies
         run: |
           pip install pyinstaller
           pip install -r requirements.txt
 
-      - name: Build Windows EXE
+      - name: Package with PyInstaller
         run: |
           pyinstaller --onefile main.py `
             --add-data "assets;assets" `
             --add-data "ProductData.csv;." `
             --add-data "BoughtProductData.csv;."
 
-      - name: Upload EXE
+      - name: Upload Executable
         uses: actions/upload-artifact@v4
         with:
           name: gui-app-exe
           path: dist/main.exe
-
-  build-macos:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-
-      - name: Install dependencies
-        run: |
-          pip install pyinstaller
-          pip install -r requirements.txt
-
-      - name: Build macOS Binary
-        run: |
-          pyinstaller --windowed --onefile main.py \
-            --add-data "assets:assets" \
-            --add-data "ProductData.csv:." \
-            --add-data "BoughtProductData.csv:."
-
-      - name: Upload macOS App
-        uses: actions/upload-artifact@v4
-        with:
-          name: gui-app-macos
-          path: dist/main
