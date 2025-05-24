@@ -2,7 +2,7 @@ from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QVBoxLayout, QLabel, QWidget, QPushButton, QHBoxLayout, QDialog, QSpinBox
 from PySide6.QtCore import Qt
 
-from service.PriceCalculator import calculator_price
+from service.PriceCalculator import PriceCalculator
 from service.ProductService import ProductService
 from userInterface.OrderSearchDialog import OrderSearchDialog
 from util.format_price import format_price
@@ -155,9 +155,9 @@ class ProductDetailUI(QWidget):
         if self.selected_product == None:
             calculated_price = int(self.product['price'])
         else:
-            calculated_price = calculator_price(
+            calculated_price = PriceCalculator.calculate_price(
                 price=self.product['price'],
-                quality=self.selected_condition,
+                condition=self.selected_condition,
                 buy_count=1,
                 bought_product=self.selected_product,
             )
@@ -190,9 +190,9 @@ class ProductDetailUI(QWidget):
         if bought_product is None:
             calculated_price = int(self.product['price'])
         else:
-            calculated_price = calculator_price(
+            calculated_price = PriceCalculator.calculate_price(
                 price=self.product['price'],
-                quality=selected_condition,
+                condition=selected_condition,
                 buy_count=1,
                 bought_product=bought_product,
             )
@@ -208,9 +208,9 @@ class ProductDetailUI(QWidget):
         if self.selected_product is None:
             calculated_price = int(self.product['price']) * count
         else:
-            calculated_price = calculator_price(
+            calculated_price = PriceCalculator.calculate_price(
                 price=self.product['price'],
-                quality=self.selected_condition,
+                condition=self.selected_condition,
                 buy_count=count,
                 bought_product=self.selected_product,
             )

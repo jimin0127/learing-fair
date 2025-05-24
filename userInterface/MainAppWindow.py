@@ -1,6 +1,5 @@
 from PySide6.QtWidgets import QWidget, QStackedWidget, QVBoxLayout
 
-from apply_global_theme import apply_global_theme
 from userInterface.OrderCompleteUI import OrderCompleteUI
 from userInterface.OrderPaymentUI import OrderPaymentUI
 from userInterface.ProductDetailUI import ProductDetailUI
