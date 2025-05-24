@@ -1,21 +1,3 @@
 product_id,category,name,brand,image_path,price,bought_year
-7,아우터,BB 트랙탑(옐로우),아디다스,assets/7.png,139000,2025
-8,아우터,폼 드라이 핏 후드 다용도 재킷,나이키,assets/8.png,85000,2025
-14,상의,Geek Half Zip-Up Peach Fuzz,스컬프터,assets/14.png,72000,2025
-1,신발,삼바 OG(블랙),아디다스,assets/1.png,149000,2025
-13,상의,화이트라벨 스틴슨 반팔 폴로 티셔츠,노스페이스,assets/13.png,88000,2025
-7,아우터,BB 트랙탑(옐로우),아디다스,assets/7.png,139000,2025
-8,아우터,폼 드라이 핏 후드 다용도 재킷,나이키,assets/8.png,85000,2025
-8,아우터,폼 드라이 핏 후드 다용도 재킷,나이키,assets/8.png,85000,2025
-14,상의,Geek Half Zip-Up Peach Fuzz,스컬프터,assets/14.png,72000,2025
-14,상의,Geek Half Zip-Up Peach Fuzz,스컬프터,assets/14.png,72000,2025
-14,상의,Geek Half Zip-Up Peach Fuzz,스컬프터,assets/14.png,72000,2025
-8,아우터,폼 드라이 핏 후드 다용도 재킷,나이키,assets/8.png,85000,2025
-7,아우터,BB 트랙탑(옐로우),아디다스,assets/7.png,139000,2025
-8,아우터,폼 드라이 핏 후드 다용도 재킷,나이키,assets/8.png,85000,2025
-15,상의,NEB half zipup mtm,누프에블루,assets/15.png,51000,2025
-15,상의,NEB half zipup mtm,누프에블루,assets/15.png,51000,2025
-15,상의,NEB half zipup mtm,누프에블루,assets/15.png,51000,2025
-15,상의,NEB half zipup mtm,누프에블루,assets/15.png,51000,2025
-15,상의,NEB half zipup mtm,누프에블루,assets/15.png,51000,2025
-15,상의,NEB half zipup mtm,누프에블루,assets/15.png,51000,2025
+7,아우터,BB 트랙탑(옐로우),아디다스,assets/7.png,139000,2023
+8,아우터,폼 드라이 핏 후드 다용도 재킷,나이키,assets/8.png,85000,2024
